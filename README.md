@@ -23,7 +23,7 @@
 ## replace-comments-x
 Replace the comments in a string.
 
-**Version**: 1.0.0  
+**Version**: 1.0.1  
 **Author**: Xotic750 <Xotic750@gmail.com>  
 **License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
 **Copyright**: Xotic750  
@@ -44,6 +44,6 @@ This method replaces comments in a string.
 ```js
 var replaceComments = require('replace-comments-x');
 
-replaceComments(test;/* test */, ''), // 'test;'
+replaceComments(test;/* test * /, ''), // 'test;'
 replaceComments(test; // test, ''), // 'test;'
 ```
