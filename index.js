@@ -26,7 +26,7 @@ var $replaceComments = function replaceComments(string) {
  * @example
  * var replaceComments = require('replace-comments-x');
  *
- * replaceComments(test;/* test  * /, ''), // 'test;'
+ * replaceComments(test;/* test * /, ''), // 'test;'
  * replaceComments(test; // test, ''), // 'test;'
  */
 module.exports = $replaceComments;

@@ -44,6 +44,6 @@ This method replaces comments in a string.
 ```js
 var replaceComments = require('replace-comments-x');
 
-replaceComments(test;/* test  * /, ''), // 'test;'
+replaceComments(test;/* test */, ''), // 'test;'
 replaceComments(test; // test, ''), // 'test;'
 ```
