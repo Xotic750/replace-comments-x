@@ -23,16 +23,16 @@
 ## replace-comments-x
 Replace the comments in a string.
 
-**Version**: 1.0.1  
+**Version**: 1.0.2  
 **Author**: Xotic750 <Xotic750@gmail.com>  
 **License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
 **Copyright**: Xotic750  
 <a name="exp_module_replace-comments-x--module.exports"></a>
 
-### `module.exports` ⇒ <code>string</code> ⏏
+### `module.exports(string, [replacement])` ⇒ <code>string</code> ⏏
 This method replaces comments in a string.
 
-**Kind**: Exported member  
+**Kind**: Exported function  
 **Returns**: <code>string</code> - The new string with the comments replaced.  
 
 | Param | Type | Description |

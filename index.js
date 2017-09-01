@@ -1,6 +1,6 @@
 /**
  * @file Replace the comments in a string.
- * @version 1.0.1
+ * @version 1.0.2
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -11,11 +11,6 @@
 
 var isString = require('is-string');
 var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
-
-var $replaceComments = function replaceComments(string) {
-  var replacement = arguments.length > 1 && isString(arguments[1]) ? arguments[1] : '';
-  return isString(string) ? string.replace(STRIP_COMMENTS, replacement) : '';
-};
 
 /**
  * This method replaces comments in a string.
@@ -29,4 +24,7 @@ var $replaceComments = function replaceComments(string) {
  * replaceComments(test;/* test * /, ''), // 'test;'
  * replaceComments(test; // test, ''), // 'test;'
  */
-module.exports = $replaceComments;
+module.exports = function replaceComments(string) {
+  var replacement = arguments.length > 1 && isString(arguments[1]) ? arguments[1] : '';
+  return isString(string) ? string.replace(STRIP_COMMENTS, replacement) : '';
+};
