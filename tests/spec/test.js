@@ -21,20 +21,43 @@ if (typeof module === 'object' && module.exports) {
   replaceComments = returnExports;
 }
 
+var hasSymbol = typeof Symbol === 'function' && typeof Symbol('') === 'symbol';
+var ifSymbolIt = hasSymbol ? it : xit;
+
 describe('replaceComments', function () {
   it('is a function', function () {
     expect(typeof replaceComments).toBe('function');
   });
 
-  it('should return an empty string when target is not a string', function () {
-    expect(replaceComments()).toBe('');
-    expect(replaceComments(void 0)).toBe('');
-    expect(replaceComments(null)).toBe('');
-    expect(replaceComments(1)).toBe('');
-    expect(replaceComments(true)).toBe('');
-    expect(replaceComments(function () {})).toBe('');
-    expect(replaceComments(/ddd/g)).toBe('');
-    expect(replaceComments(new Date())).toBe('');
+  it('should throw when target is null or undefined', function () {
+    expect(function () {
+      replaceComments();
+    }).toThrow();
+
+    expect(function () {
+      replaceComments(void 0);
+    }).toThrow();
+
+    expect(function () {
+      replaceComments(null);
+    }).toThrow();
+  });
+
+  it('should return the coerced argument when target is not a string', function () {
+    var values = [
+      true,
+      'abc',
+      1,
+      function () {},
+      [],
+      /r/
+    ];
+
+    var expected = values.map(String);
+    var actual = values.map(replaceComments);
+    expect(actual).toEqual(expected);
+    var date = new Date();
+    expect(replaceComments(date)).toBe(String(date));
   });
 
   it('should return an empty string for basic comment matches', function () {
@@ -55,13 +78,14 @@ describe('replaceComments', function () {
     expect(replaceComments('//test', 'replaced')).toBe('replaced');
   });
 
-  it('if replacement is not a string should return "" for basic comment matches', function () {
-    expect(replaceComments('/* test */'), void 0).toBe('');
-    expect(replaceComments('/*test*/'), null).toBe('');
-    expect(replaceComments('/** test */', 1)).toBe('');
-    expect(replaceComments('/**test*/', true)).toBe('');
-    expect(replaceComments('// test', /ddd/)).toBe('');
-    expect(replaceComments('//test'), new Date()).toBe('');
+  it('if replacement supplied the coerced replacement for basic comment matches', function () {
+    expect(replaceComments('/* test */', void 0)).toBe('undefined');
+    expect(replaceComments('/*test*/', null)).toBe('null');
+    expect(replaceComments('/** test */', 1)).toBe('1');
+    expect(replaceComments('/**test*/', true)).toBe('true');
+    expect(replaceComments('// test', /ddd/)).toBe('/ddd/');
+    var date = new Date();
+    expect(replaceComments('//test', date)).toBe(String(date));
   });
 
   it('should return the correct string for complex comment matches', function () {
@@ -77,6 +101,44 @@ describe('replaceComments', function () {
     expect(replaceComments('complex; // test', ' ')).toBe('complex;  ');
     expect(replaceComments('complex;//test', ' ')).toBe('complex; ');
     expect(replaceComments('complex; //test', ' ')).toBe('complex;  ');
-    expect(replaceComments('function /*1*/complex/*2*(/*3*/)/*4*/{/*5*/}/*6*///test', ' ')).toBe('function  complex ) { }  ');
+    var actual = replaceComments('function /*1*/complex/*2*/(/*3*/)/*4*/{/*5*/}/*6*///test', ' ');
+    var epected = 'function  complex ( ) { }  ';
+    expect(actual).toBe(epected);
+  });
+
+  it('should throw for Object.create(null)', function () {
+    expect(function () {
+      replaceComments(Object.create(null));
+    }).toThrow();
+  });
+
+  it('should throw for replacement Object.create(null)', function () {
+    expect(function () {
+      replaceComments('', Object.create(null));
+    }).toThrow();
+  });
+
+  ifSymbolIt('should throw for Symbol', function () {
+    var sym = Symbol('foo');
+    expect(function () {
+      replaceComments(sym);
+    }).toThrow();
+
+    var symObj = Object(sym);
+    expect(function () {
+      replaceComments(Object(symObj));
+    }).toThrow();
+  });
+
+  ifSymbolIt('should throw for replacement Symbol', function () {
+    var sym = Symbol('foo');
+    expect(function () {
+      replaceComments('', sym);
+    }).toThrow();
+
+    var symObj = Object(sym);
+    expect(function () {
+      replaceComments('', Object(symObj));
+    }).toThrow();
   });
 });
