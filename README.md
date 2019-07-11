@@ -21,15 +21,13 @@
 <a name="module_replace-comments-x"></a>
 
 ## replace-comments-x
+
 Replace the comments in a string.
 
-**Version**: 2.0.0  
-**Author**: Xotic750 <Xotic750@gmail.com>  
-**License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
-**Copyright**: Xotic750  
 <a name="exp_module_replace-comments-x--module.exports"></a>
 
 ### `module.exports(string, [replacement])` ⇒ <code>string</code> ⏏
+
 This method replaces comments in a string.
 
 **Kind**: Exported function  
@@ -39,16 +37,16 @@ This method replaces comments in a string.
 - <code>TypeError</code> If string is null or undefined or not coercible.
 - <code>TypeError</code> If replacement is not coercible.
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| string | <code>string</code> | The string to be stripped. |
+| Param         | Type                | Description                             |
+| ------------- | ------------------- | --------------------------------------- |
+| string        | <code>string</code> | The string to be stripped.              |
 | [replacement] | <code>string</code> | The string to be used as a replacement. |
 
-**Example**  
-```js
-var replaceComments = require('replace-comments-x');
+**Example**
 
-replaceComments(test;/* test * /, ''), // 'test;'
-replaceComments(test; // test, ''), // 'test;'
+```js
+import replaceComments from 'replace-comments-x';
+
+console.log(replaceComments('test; /* test */', '')); // 'test;'
+console.log(replaceComments('test; // test', '')); // 'test;'
 ```
