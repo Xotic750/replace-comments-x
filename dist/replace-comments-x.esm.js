@@ -1,10 +1,8 @@
 import toStr from 'to-string-x';
 import requireCoercibleToString from 'require-coercible-to-string-x';
-
-const EMPTY_STRING = '';
-const STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/gm;
-const {replace} = EMPTY_STRING;
-
+var EMPTY_STRING = '';
+var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/gm;
+var replace = EMPTY_STRING.replace;
 /**
  * This method replaces comments in a string.
  *
@@ -14,6 +12,9 @@ const {replace} = EMPTY_STRING;
  * @throws {TypeError} If replacement is not coercible.
  * @returns {string} The new string with the comments replaced.
  */
+
 export default function replaceComments(string, replacement) {
   return replace.call(requireCoercibleToString(string), STRIP_COMMENTS, arguments.length > 1 ? toStr(replacement) : EMPTY_STRING);
 }
+
+//# sourceMappingURL=replace-comments-x.esm.js.map
