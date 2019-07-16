@@ -1,6 +1,5 @@
 import replaceComments from 'src/replace-comments-x';
 
-/* eslint-disable-next-line compat/compat */
 const hasSymbol = typeof Symbol === 'function' && typeof Symbol('') === 'symbol';
 const ifSymbolIt = hasSymbol ? it : xit;
 
@@ -17,7 +16,6 @@ describe('replaceComments', function() {
     }).toThrowErrorMatchingSnapshot();
 
     expect(function() {
-      /* eslint-disable-next-line no-void */
       replaceComments(void 0);
     }).toThrowErrorMatchingSnapshot();
 
@@ -28,15 +26,7 @@ describe('replaceComments', function() {
 
   it('should return the coerced argument when target is not a string', function() {
     expect.assertions(2);
-    const values = [
-      true,
-      'abc',
-      1,
-      /* eslint-disable-next-line lodash/prefer-noop */
-      function() {},
-      [],
-      /r/,
-    ];
+    const values = [true, 'abc', 1, function() {}, [], /r/];
     const expected = values.map(String);
     const actual = values.map(replaceComments);
     expect(actual).toStrictEqual(expected);
@@ -66,7 +56,7 @@ describe('replaceComments', function() {
 
   it('if replacement supplied the coerced replacement for basic comment matches', function() {
     expect.assertions(6);
-    /* eslint-disable-next-line no-void */
+
     expect(replaceComments('/* test */', void 0)).toBe('undefined');
     expect(replaceComments('/*test*/', null)).toBe('null');
     expect(replaceComments('/** test */', 1)).toBe('1');
@@ -111,7 +101,7 @@ describe('replaceComments', function() {
 
   ifSymbolIt('should throw for Symbol', function() {
     expect.assertions(2);
-    /* eslint-disable-next-line compat/compat */
+
     const sym = Symbol('foo');
     expect(function() {
       replaceComments(sym);
@@ -125,7 +115,7 @@ describe('replaceComments', function() {
 
   ifSymbolIt('should throw for replacement Symbol', function() {
     expect.assertions(2);
-    /* eslint-disable-next-line compat/compat */
+
     const sym = Symbol('foo');
     expect(function() {
       replaceComments('', sym);
