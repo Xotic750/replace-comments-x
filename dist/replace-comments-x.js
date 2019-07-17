@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-16T21:10:48.106Z",
+  "date": "2019-07-17T15:24:09.209Z",
   "describe": "",
   "description": "Replace the comments in a string.",
   "file": "replace-comments-x.js",
-  "hash": "963f73872ab76d99f212",
+  "hash": "23020e5dfba4cf4d3444",
   "license": "MIT",
-  "version": "3.0.8"
+  "version": "3.0.9"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -284,13 +284,15 @@ var castString = ERROR_MESSAGE.constructor;
  * @returns {string} The converted value.
  */
 
-function ToString(value) {
+var to_string_x_esm_ToString = function ToString(value) {
   if (is_symbol_default()(value)) {
     throw new TypeError(ERROR_MESSAGE);
   }
 
   return castString(value);
-}
+};
+
+/* harmony default export */ var to_string_x_esm = (to_string_x_esm_ToString);
 
 
 // CONCATENATED MODULE: ./node_modules/is-nil-x/dist/is-nil-x.esm.js
@@ -300,10 +302,12 @@ function ToString(value) {
  * @param {*} [value] - The value to check.
  * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
  */
-function isNil(value) {
+var isNil = function isNil(value) {
   /* eslint-disable-next-line lodash/prefer-is-nil */
   return value === null || typeof value === 'undefined';
-}
+};
+
+/* harmony default export */ var is_nil_x_esm = (isNil);
 
 
 // CONCATENATED MODULE: ./node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
@@ -317,13 +321,15 @@ function isNil(value) {
  * @returns {string} The `value`.
  */
 
-function requireObjectCoercible(value) {
-  if (isNil(value)) {
+var require_object_coercible_x_esm_requireObjectCoercible = function requireObjectCoercible(value) {
+  if (is_nil_x_esm(value)) {
     throw new TypeError("Cannot call method on ".concat(value));
   }
 
   return value;
-}
+};
+
+/* harmony default export */ var require_object_coercible_x_esm = (require_object_coercible_x_esm_requireObjectCoercible);
 
 
 // CONCATENATED MODULE: ./node_modules/require-coercible-to-string-x/dist/require-coercible-to-string-x.esm.js
@@ -337,13 +343,14 @@ function requireObjectCoercible(value) {
  * @returns {string} The value as a string.
  */
 
-function requireCoercibleToString(value) {
-  return ToString(requireObjectCoercible(value));
-}
+var require_coercible_to_string_x_esm_requireCoercibleToString = function requireCoercibleToString(value) {
+  return to_string_x_esm(require_object_coercible_x_esm(value));
+};
+
+/* harmony default export */ var require_coercible_to_string_x_esm = (require_coercible_to_string_x_esm_requireCoercibleToString);
 
 
 // CONCATENATED MODULE: ./dist/replace-comments-x.esm.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return replaceComments; });
 
 
 var EMPTY_STRING = '';
@@ -359,9 +366,11 @@ var replace = EMPTY_STRING.replace;
  * @returns {string} The new string with the comments replaced.
  */
 
-function replaceComments(string, replacement) {
-  return replace.call(requireCoercibleToString(string), STRIP_COMMENTS, arguments.length > 1 ? ToString(replacement) : EMPTY_STRING);
-}
+var replace_comments_x_esm_replaceComments = function replaceComments(string, replacement) {
+  return replace.call(require_coercible_to_string_x_esm(string), STRIP_COMMENTS, arguments.length > 1 ? to_string_x_esm(replacement) : EMPTY_STRING);
+};
+
+/* harmony default export */ var replace_comments_x_esm = __webpack_exports__["default"] = (replace_comments_x_esm_replaceComments);
 
 
 

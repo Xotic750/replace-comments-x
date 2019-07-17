@@ -14,6 +14,8 @@ const {replace} = EMPTY_STRING;
  * @throws {TypeError} If replacement is not coercible.
  * @returns {string} The new string with the comments replaced.
  */
-export default function replaceComments(string, replacement) {
+const replaceComments = function replaceComments(string, replacement) {
   return replace.call(requireCoercibleToString(string), STRIP_COMMENTS, arguments.length > 1 ? toStr(replacement) : EMPTY_STRING);
-}
+};
+
+export default replaceComments;

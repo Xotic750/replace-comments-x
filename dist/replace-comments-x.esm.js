@@ -13,8 +13,10 @@ var replace = EMPTY_STRING.replace;
  * @returns {string} The new string with the comments replaced.
  */
 
-export default function replaceComments(string, replacement) {
+var replaceComments = function replaceComments(string, replacement) {
   return replace.call(requireCoercibleToString(string), STRIP_COMMENTS, arguments.length > 1 ? toStr(replacement) : EMPTY_STRING);
-}
+};
+
+export default replaceComments;
 
 //# sourceMappingURL=replace-comments-x.esm.js.map
