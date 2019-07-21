@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-19T21:39:06.353Z",
+  "date": "2019-07-21T22:25:37.336Z",
   "describe": "",
   "description": "Replace the comments in a string.",
   "file": "replace-comments-x.js",
   "hash": "23020e5dfba4cf4d3444",
   "license": "MIT",
-  "version": "3.0.15"
+  "version": "3.0.16"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
