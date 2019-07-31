@@ -2,7 +2,7 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-31T17:14:11.740Z",
+  "date": "2019-07-31T19:30:41.288Z",
   "describe": "",
   "description": "Replace the comments in a string.",
   "file": "replace-comments-x.js",
