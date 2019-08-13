@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-08-12T21:53:44.120Z",
+  "date": "2019-08-13T00:48:59.765Z",
   "describe": "",
   "description": "Replace the comments in a string.",
   "file": "replace-comments-x.js",
-  "hash": "23020e5dfba4cf4d3444",
+  "hash": "36a445efbc2a554b5d7b",
   "license": "MIT",
   "version": "3.0.25"
 }
@@ -23,19 +23,34 @@
 })((function () {
   'use strict';
 
-  if (typeof self !== 'undefined') {
-    return self;
-  }
+  /* eslint-disable-next-line no-var */
+  var magic;
 
-  if (typeof window !== 'undefined') {
+  try {
+    /* eslint-disable-next-line no-extend-native */
+    Object.defineProperty(Object.prototype, '__magic__', {
+      /* eslint-disable-next-line object-shorthand */
+      get: function() {
+        return this;
+      },
+      /* eslint-disable-next-line prettier/prettier */
+      configurable: true
+    });
+
+    if (typeof __magic__ === 'undefined') {
+      magic = typeof self === 'undefined' ? window : self;
+    } else {
+      /* eslint-disable-next-line no-undef */
+      magic = __magic__;
+    }
+
+    /* eslint-disable-next-line no-underscore-dangle,no-use-extend-native/no-use-extend-native */
+    delete Object.prototype.__magic__;
+
+    return magic;
+  } catch (error) {
     return window;
   }
-
-  if (typeof global !== 'undefined') {
-    return global;
-  }
-
-  return Function('return this')();
 }()), function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
