@@ -1,9 +1,10 @@
 import toStr from 'to-string-x';
 import requireCoercibleToString from 'require-coercible-to-string-x';
+import methodize from 'simple-methodize-x';
 
 const EMPTY_STRING = '';
 const STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/gm;
-const {replace} = EMPTY_STRING;
+const methodizedReplace = methodize(EMPTY_STRING.replace);
 
 /**
  * This method replaces comments in a string.
@@ -15,7 +16,11 @@ const {replace} = EMPTY_STRING;
  * @returns {string} The new string with the comments replaced.
  */
 const replaceComments = function replaceComments(string, replacement) {
-  return replace.call(requireCoercibleToString(string), STRIP_COMMENTS, arguments.length > 1 ? toStr(replacement) : EMPTY_STRING);
+  return methodizedReplace(
+    requireCoercibleToString(string),
+    STRIP_COMMENTS,
+    arguments.length > 1 ? toStr(replacement) : EMPTY_STRING,
+  );
 };
 
 export default replaceComments;
